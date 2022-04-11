@@ -68,7 +68,9 @@ const HeroSlideItem = (props) => {
     );
 
     const setModalActive = async () => {
-        const modal = document.querySelector(`#modal_${item.id}`);
+        const modal = document.querySelector(`#modal__${item.id}`);
+        console.log(modal)
+        console.log(`#modal__${item.id}`)
         const videos = await tmdbApi.getVideos(category.movie, item.id);
 
         if (videos.results.length > 0) {
@@ -116,14 +118,13 @@ const TrailerModal = (props) => {
     const onClose = () => iframeRef.current.setAttribute("src", "");
 
     return (
-        <Modal active={false} id={`modal__$${item.id}`}>
+        <Modal active={false} id={`modal__${item.id}`}>
             <ModalContent onClose={onClose}>
-                <iframeRef
+                <iframe
                     ref={iframeRef}
-                    with="100%"
                     height="500px"
                     title="trailer"
-                ></iframeRef>
+                ></iframe>
             </ModalContent>
         </Modal>
     );
